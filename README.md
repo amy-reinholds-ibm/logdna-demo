@@ -16,16 +16,22 @@ the view to only see the applications we're interested in.
 
 1. Filtering by app. 
 
-LogDNA can separate its logs into buckets, but the type of bucket depends on the kind of cluster. In Kubernetes, this view represents containers. So, in our case we can select containers representing our application to limit the data show:
+LogDNA can separate its logs into buckets, but the type of bucket depends on the kind of cluster. In Kubernetes, this view represents containers. So, in our case we can select containers representing our application to limit the data show.
 
-From the drop-down list, select the apps we want to view: ![screenshot](logdna_screenshots/no-filter.png).
+Prior to filtering, LogDNA is overwhelmed with output from Kuberentes system pods:
+ ![screenshot](logdna_screenshots/no-filter.png).
+
+
+
+From the drop-down list, select the apps we want to view:
+![screenshot](logdna_screenshots/filter-app.png).
 
 After filtering for just the containers we want, the noisy system info is removed and we just see events.
-![screenshot](logdna_screenshots/filter-app.png).
 
 This filtered view can then be saved: ![screenshot](logdna_screenshots/new-view.png). 
 
-Takeway: Filter the view by a combination of "app" selection.
+Takeway: Filter the view by a combination of "app" selection. In Kubernetes, the apps are containers, which makes it easy to select
+just the ones you're interested in.
 
 
 2. Next, let's look at how we can filter by entering a search query. This will be especially helpful for creating alerts based on conditions in the log.
@@ -72,7 +78,7 @@ After setting up alerts for Slack and Email - both will be sent simultaneously:
 
 Notice how the view updates immediately with a message about the container's JVM stopping.
 
-# Scenario 3: Map frequency
+# Scenario 3: API Usage Analysis - how is our API being used?
 
 Next, we'll take a look at the "Board" feature of LogDNA. This is a feature I love because it's a great way to visualize
 a large quantity of data quickly, find trends and zero-in on error conditions. We'll start by simply getting a graph
