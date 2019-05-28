@@ -3,18 +3,20 @@
 # Introduction
 	
 
-In the [What's Going On In My Cluster](https://haralduebele.blog/2019/04/08/whats-going-on-in-my-cluster/), Harald Uebele describes how to set up
-the Native Cloud Starter app with IBM LogDNA service. In this tutorial, we'll expand on that and show some use cases where LogDNA helps
+In the [What's Going On In My Cluster](https://haralduebele.blog/2019/04/08/whats-going-on-in-my-cluster/), my colleague Harald Uebele describes how to set up
+the [Native Cloud Starter](https://github.com/nheidloff/cloud-native-starter) app with IBM LogDNA service. In this tutorial, we'll expand on that and show some use cases where LogDNA helps
 developers and operators with some common scenarios in the context of an IBM LogDNA cluster. Most of this is adapted from personal
 experience in building and troubleshooting the [IBM Developer](https://developer.ibm.com/blogs/introducing-the-ibm-developer-mobile-app/). 
 
 # Scenario 1: Create views
 
 
-By default, everything is displayed, which can be overwhelming in a kubernetes cluster with many system and internal components. We want to filter
+By default, lines from all containers in a Kuberenets cluster are displayed, which can be overwhelming as a Kubernetes cluster has many system and internal components. We want to filter
 the view to only see the applications we're interested in.
 
-1. Filtering by app. LogDNA can separate its logs into buckets, but the type of bucket depends on the kind of cluster. In Kubernetes, this view represents containers. So, in our case we can select containers representing our application to limit the data show:
+1. Filtering by app. 
+
+LogDNA can separate its logs into buckets, but the type of bucket depends on the kind of cluster. In Kubernetes, this view represents containers. So, in our case we can select containers representing our application to limit the data show:
 
 From the drop-down list, select the apps we want to view: ![screenshot](logdna_screenshots/no-filter.png).
 
@@ -26,7 +28,7 @@ This filtered view can then be saved: ![screenshot](logdna_screenshots/new-view.
 Takeway: Filter the view by a combination of "app" selection.
 
 
-Next, let's look at how we can filter by entering a search query. This will be especially helpful for creating alerts based on conditions in the log.
+2. Next, let's look at how we can filter by entering a search query. This will be especially helpful for creating alerts based on conditions in the log.
 
 We click on the saved view on the left side of the screen, then enter a search term.  For example, we can set it up to view Java container shutdowns with the phrase "JVM is exiting".
 
@@ -61,16 +63,18 @@ $ [fix-text] [k|istio-south] #  kubectl delete pod articles-dddf44c85-xqdqt
 pod "articles-dddf44c85-xqdqt" deleted
 ```
 
+After setting up alerts for Slack and Email - both will be sent simultaneously: 
+
 ![screenshot](logdna_screenshots/alert-slack.png).
 
-We can also set-up email alerts - multiple alerts can bethe same alert 
+
 ![screenshot](logdna_screenshots/alert-email.png).
 
 Notice how the view updates immediately with a message about the container's JVM stopping.
 
 # Scenario 3: Map frequency
 
-Next, we'll take a look at the Board feature of LogDNA. This is a feature I love because it's a great way to visualize
+Next, we'll take a look at the "Board" feature of LogDNA. This is a feature I love because it's a great way to visualize
 a large quantity of data quickly, find trends and zero-in on error conditions. We'll start by simply getting a graph
 of authors requested by the API. We'll create a graph that uses the authors app and the filters it by author names. 
 We'll create two graphs, one for "Niklas" and for "Harald", and then drive traffic with `artillery` and we can examine
@@ -89,7 +93,7 @@ configurations to drive traffic to the app with specific arguments:
 [Sun May 26, 11:41 AM] # artillery run simtraffic_niklas.yml 
 ```
 
-You can see the frequency spikes based on when artillery tests sent data to our test URL.
+You can see the frequency spikes in two separate graphs that coincide precisely with the times our artillery test ran:
 
 ![screenshot](logdna_screenshots/author-freq.png)
 
@@ -116,5 +120,7 @@ the root cause.
 
 # Conclustion
 
-In this guide, we saw
+In this guide, we saw a few features of LogDNA that help filter logs, identify traffic and even detect and perform
+root cause analysis on common error conditions. In future blogs, we'll examine additional feature of LogDNA
+such as exclusion filters and archiving.
 
