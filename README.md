@@ -78,30 +78,43 @@ the histogram in the view and the frequencies of various requests.  We launched 
 request content with different parameters. This is a synthetic test but shows the kind of visualizations 
 that are trivial to build in LogDNA by simply filtering on a single term.
 
+* Note: See the configurations starting with `simtraffic_` in GitHub. In this example, I am using the following 
+configurations to drive traffic to the app with specific arguments:
 
 ```
-Sun May 26, 11:35 AM #  artillery run simtraffic_harald.yml 
+[Sun May 26, 11:35 AM] #  artillery run simtraffic_harald.yml 
 ```
 
 ```
-574|Sun May 26, 11:41 AM| # artillery run simtraffic_niklas.yml 
+[Sun May 26, 11:41 AM] # artillery run simtraffic_niklas.yml 
 ```
+
 You can see the frequency spikes based on when artillery tests sent data to our test URL.
 
 ![screenshot](logdna_screenshots/author-freq.png)
 
-# Scenario 4: Map errors - drill down into logs
+# Scenario 4: Discover error and drill down into logs
 
-Let's create some error conditions and use LogDNA to figure out what happened. As before, we'll break the app by deleting
-a pod. We'll create graphs for each app in our microservice and filter on "error".  You may want to create graphs for more
+Let's delete a running pod in the middle of a retrieval operation. As before, we'll break the app by deleting
+a pod. We'll create graphs for our app simply filter on "error".  You may want to create graphs for more
 specific conditions (for example, in a different app we have I have filters specific for network errors.) But what I like about
 the broad kind of error filter is the ability to drill down by selecting a time range when an interesting event happens and
 immediatly jumping into the raw log view, correlated by timestamps. This is a huge improvement over traditional `grep` based
 workflows for event search in log files. 
 
+We see a spike in the graph showing when the error occurred:
+
 ![screenshot](logdna_screenshots/error2.png)
 
+If we zoom in to the logs at the time of the error and go back to the view we had setup that, indeed, we see the `articles`
+service has been stopped:
 
-Scenario 7: Time based filtering - natural langauge time ranges
+![screenshot](logdna_screenshots/exit-log.png)
 
+This will allow us to further analyze the situation by examining logs around the failure and get a clear picture of
+the root cause.
+
+# Conclustion
+
+In this guide, we saw
 
