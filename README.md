@@ -3,9 +3,9 @@
 # Introduction
 	
 
-In the [What's Going On In My Cluster](https://haralduebele.blog/2019/04/08/whats-going-on-in-my-cluster/), my colleague Harald Uebele describes how to set up
-the [Native Cloud Starter](https://github.com/nheidloff/cloud-native-starter) app with IBM LogDNA service. In this tutorial, we'll expand on that and show some use cases where LogDNA helps
-developers and operators with some common scenarios in the context of an IBM LogDNA cluster. Most of this is adapted from personal
+In the blog post [What's Going On In My Cluster](https://haralduebele.blog/2019/04/08/whats-going-on-in-my-cluster/), my colleague Harald Uebele describes how to set up
+the [Native Cloud Starter](https://github.com/nheidloff/cloud-native-starter) app with embedded IBM LogDNA service. In this tutorial, we'll expand on that and show some use cases where LogDNA helps
+developers and operators with some common production scenarios. Most of this is adapted from personal
 experience in building and troubleshooting the [IBM Developer](https://developer.ibm.com/blogs/introducing-the-ibm-developer-mobile-app/). 
 
 # Scenario 1: Create views
