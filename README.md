@@ -6,7 +6,7 @@
 In his blog post [What's Going On In My Cluster](https://haralduebele.blog/2019/04/08/whats-going-on-in-my-cluster/), my colleague Harald Uebele describes how to connect
 the [Native Cloud Starter](https://github.com/nheidloff/cloud-native-starter) microservice-based Web app with the LogDNA service available from IBM Cloud. In this tutorial, we'll expand on that and show some use cases where LogDNA helps
 developers and operators with some common production scenarios. Most of this is adapted from personal
-experience in building and troubleshooting the [IBM Developer](https://developer.ibm.com/blogs/introducing-the-ibm-developer-mobile-app/). 
+experience in building and troubleshooting the back-end of the [IBM Developer](https://developer.ibm.com/blogs/introducing-the-ibm-developer-mobile-app/) mobile app. 
 
 # Prerequisites
 
